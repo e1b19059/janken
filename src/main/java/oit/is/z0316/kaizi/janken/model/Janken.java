@@ -6,4 +6,17 @@ import java.util.ArrayList;
  * これらをじゃんけん用に変更する
  */
 public class Janken {
+  String name;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void initName() {
+    this.name = null;
+  }
 }
