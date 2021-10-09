@@ -7,10 +7,10 @@
 </head>
 
 <body>
-  <form method="POST" action="lec02">
-    <input type="text" name="name">
-    <input type="submit" value="入室">
-  </form>
+  <h1>Lec02 GET!</h1>
+  <div th:if="${name}">
+    <p>Hi [[${name}]]</p>
+  </div>
 </body>
 
 </html>
