@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
   <meta charset="UTF-8">
@@ -7,13 +7,36 @@
 </head>
 
 <body>
+  <a href="/logout">ログアウト</a>
   <h1>Lec02 GET!</h1>
-  <div th:if="${name}">
-    <p>Hi [[${name}]]</p>
-  </div>
-  <a href="lec02janken?hand=Gu" name="${name}">ぐー</a>
-  <a href="lec02janken?hand=Choki">ちょき</a>
-  <a href="lec02janken?hand=Pa">ぱー</a>
+  <p>エントリー</p>
+
+  <ul>
+    <li th:each="user : ${room.users}">[[${user}]]</li>
+  </ul>
+
+  Hi [[${login_user}]]<br>
+  <a href="step2?hand=Gu">ぐー</a>
+  <a href="step2?hand=Choki">ちょき</a>
+  <a href="step2?hand=Pa">ぱー</a>
+
+  <th:block th:switch="${hand}">
+    <p th:case=Gu>
+      あなたの手 Gu<br>
+      相手の手 Gu<br>
+      結果 It's a draw
+    </p>
+    <p th:case=Choki>
+      あなたの手 Choki<br>
+      相手の手 Gu<br>
+      結果 You Lose!
+    </p>
+    <p th:case=Pa>
+      あなたの手 Pa<br>
+      相手の手 Gu<br>
+      結果 You Win!
+    </p>
+  </th:block>
 </body>
 
 </html>
