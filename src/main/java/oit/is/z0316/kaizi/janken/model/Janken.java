@@ -14,8 +14,4 @@ public class Janken {
   public void setName(String name) {
     this.name = name;
   }
-
-  public void initName() {
-    this.name = null;
-  }
 }

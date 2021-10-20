@@ -1,15 +1,18 @@
 package oit.is.z0316.kaizi.janken.controller;
 
-import oit.is.z0316.kaizi.janken.model.Janken;
 import java.security.Principal;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import oit.is.z0316.kaizi.janken.model.Entry;
+import oit.is.z0316.kaizi.janken.model.User;
+import oit.is.z0316.kaizi.janken.model.UserMapper;
 
 /**
  * Lec02Controller
@@ -23,36 +26,15 @@ public class Lec02Controller {
   @Autowired
   private Entry room;
 
-  Janken janken = new Janken();
-  /*
-
-  @GetMapping("/lec02")
-  public String lec02(){
-    janken.initName();
-    return "lec02.html";
-  }
-
-  @PostMapping("/lec02")
-  public String lec02(@RequestParam String name, ModelMap model){
-    model.addAttribute("name", name);
-    janken.setName(name);
-    return "lec02.html";
-  }/*
-
-  /*
-  @GetMapping("/lec02janken")
-  public String lec02janken(@RequestParam String hand, ModelMap model) {
-    model.addAttribute("name", janken.getName());
-    model.addAttribute("hand", hand);
-    return "lec02janken.html";
-  }*/
+  @Autowired
+  UserMapper userMapper;
 
   @GetMapping("step1")
+  @Transactional
   public String lec02(ModelMap model, Principal prin) {
-    String loginUser = prin.getName();
-    this.room.addUser(loginUser);
-    model.addAttribute("login_user", loginUser);
-    janken.setName(loginUser);
+    ArrayList<User> userList = userMapper.selectAllUser();
+
+    model.addAttribute("userList", userList);
     model.addAttribute("room", this.room);
 
     return "lec02.html";
@@ -60,9 +42,12 @@ public class Lec02Controller {
 
   @GetMapping("step2")
   public String lec02(String hand, ModelMap model, Principal prin) {
-    model.addAttribute("login_user", janken.getName());
-    model.addAttribute("hand", hand);
+    ArrayList<User> userList = userMapper.selectAllUser();
+
+    model.addAttribute("userList", userList);
     model.addAttribute("room", this.room);
+    model.addAttribute("hand", hand);
+
     return "lec02.html";
   }
 

@@ -15,7 +15,16 @@
     <li th:each="user : ${room.users}">[[${user}]]</li>
   </ul>
 
-  Hi [[${login_user}]]<br>
+  <p th:if="${userList}">
+  <div th:each="User:${userList}">
+    <tr>
+      <td>ID:[[${User.id}]]</td>
+      <td>name:[[${User.name}]]</td>
+    </tr>
+  </div>
+  </p>
+
+  <div>Hi <span sec:authentication="name"></span></div>
   <a href="step2?hand=Gu">ぐー</a>
   <a href="step2?hand=Choki">ちょき</a>
   <a href="step2?hand=Pa">ぱー</a>
