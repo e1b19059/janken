@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import oit.is.z0316.kaizi.janken.model.Entry;
 import oit.is.z0316.kaizi.janken.model.User;
 import oit.is.z0316.kaizi.janken.model.UserMapper;
+import oit.is.z0316.kaizi.janken.model.Match;
+import oit.is.z0316.kaizi.janken.model.MatchMapper;
 
 /**
  * Lec02Controller
@@ -29,12 +31,17 @@ public class Lec02Controller {
   @Autowired
   UserMapper userMapper;
 
+  @Autowired
+  MatchMapper matchMapper;
+
   @GetMapping("step1")
   @Transactional
   public String lec02(ModelMap model, Principal prin) {
     ArrayList<User> userList = userMapper.selectAllUser();
+    ArrayList<Match> matchList = matchMapper.selectAllMatch();
 
     model.addAttribute("userList", userList);
+    model.addAttribute("matchList", matchList);
     model.addAttribute("room", this.room);
 
     return "lec02.html";
@@ -43,8 +50,10 @@ public class Lec02Controller {
   @GetMapping("step2")
   public String lec02(String hand, ModelMap model, Principal prin) {
     ArrayList<User> userList = userMapper.selectAllUser();
+    ArrayList<Match> matchList = matchMapper.selectAllMatch();
 
     model.addAttribute("userList", userList);
+    model.addAttribute("matchList", matchList);
     model.addAttribute("room", this.room);
     model.addAttribute("hand", hand);
 

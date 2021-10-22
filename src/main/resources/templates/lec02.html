@@ -24,6 +24,19 @@
   </div>
   </p>
 
+  <p>試合情報</p>
+  <p th:if="${matchList}">
+  <div th:each="Match:${matchList}">
+    <tr>
+      <td>ID:[[${Match.id}]]</td>
+      <td>user1:[[${Match.user1}]]</td>
+      <td>user2:[[${Match.user2}]]</td>
+      <td>user1Hand:[[${Match.user1Hand}]]</td>
+      <td>user2Hand:[[${Match.user2Hand}]]</td>
+    </tr>
+  </div>
+  </p>
+
   <div>Hi <span sec:authentication="name"></span></div>
   <a href="step2?hand=Gu">ぐー</a>
   <a href="step2?hand=Choki">ちょき</a>
