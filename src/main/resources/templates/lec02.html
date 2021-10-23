@@ -11,18 +11,18 @@
   <h1>Lec02 GET!</h1>
   <p>エントリー</p>
 
+  <!--
   <ul>
     <li th:each="user : ${room.users}">[[${user}]]</li>
   </ul>
+  -->
 
-  <p th:if="${userList}">
-  <div th:each="User:${userList}">
-    <tr>
-      <td>ID:[[${User.id}]]</td>
-      <td>name:[[${User.name}]]</td>
-    </tr>
-  </div>
-  </p>
+  <ul>
+    <li th:each="User : ${userList}">
+      <a th:href="@{/lec02/match(id=${User.id})}">
+         [[${User.name}]]</a>
+    </li>
+  </ul>
 
   <p>試合情報</p>
   <p th:if="${matchList}">

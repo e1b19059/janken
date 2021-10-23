@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="UTF-8">
+  <title>じゃんけんアプリ</title>
+</head>
+
+<body>
+  <a href="/logout">ログアウト</a>
+  <p>自分：<span sec:authentication="name"></span></p>
+  <div th:if="${user}">相手：[[${user.name}]]</div>
+
+</body>
+
+</html>

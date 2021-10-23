@@ -9,12 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import oit.is.z0316.kaizi.janken.model.Entry;
-import oit.is.z0316.kaizi.janken.model.User;
-import oit.is.z0316.kaizi.janken.model.UserMapper;
 import oit.is.z0316.kaizi.janken.model.Match;
 import oit.is.z0316.kaizi.janken.model.MatchMapper;
+import oit.is.z0316.kaizi.janken.model.User;
+import oit.is.z0316.kaizi.janken.model.UserMapper;
 
 /**
  * Lec02Controller
@@ -58,6 +59,13 @@ public class Lec02Controller {
     model.addAttribute("hand", hand);
 
     return "lec02.html";
+  }
+
+  @GetMapping("match")
+  public String match(@RequestParam Integer id, ModelMap model) {
+    User user = userMapper.selectById(id);
+    model.addAttribute("user", user);
+    return "match.html";
   }
 
 }
