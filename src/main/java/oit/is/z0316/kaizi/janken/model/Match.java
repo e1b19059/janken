@@ -1,31 +1,35 @@
 package oit.is.z0316.kaizi.janken.model;
 
 public class Match {
-  int id;
-  int user1, user2;
+  Integer id;
+  Integer user1, user2;
   String user1Hand, user2Hand;
 
-  public int getId() {
+  public Match() {
+
+  }
+
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
-  public int getUser1() {
+  public Integer getUser1() {
     return user1;
   }
 
-  public void setUser1(int user1) {
+  public void setUser1(Integer user1) {
     this.user1 = user1;
   }
 
-  public int getUser2() {
+  public Integer getUser2() {
     return user2;
   }
 
-  public void setUser2(int user2) {
+  public void setUser2(Integer user2) {
     this.user2 = user2;
   }
 

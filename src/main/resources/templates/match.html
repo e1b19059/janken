@@ -8,9 +8,39 @@
 
 <body>
   <a href="/logout">ログアウト</a>
+
+  <h1>Match</h1>
+
   <p>自分：<span sec:authentication="name"></span></p>
   <div th:if="${user}">相手：[[${user.name}]]</div>
 
+  <th:block th:switch="${user.id}">
+    <p th:case=1>
+      <a href="step4?id=1&hand=Gu">ぐー</a>
+      <a href="step4?id=1&hand=Choki">ちょき</a>
+      <a href="step4?id=1&hand=Pa">ぱー</a>
+    </p>
+  </th:block>
+
+  <th:block th:switch="${hand}">
+    <p th:case=Gu>
+      あなたの手 Gu<br>
+      相手の手 Gu<br>
+      結果 It's a draw
+    </p>
+    <p th:case=Choki>
+      あなたの手 Choki<br>
+      相手の手 Gu<br>
+      結果 You Lose!
+    </p>
+    <p th:case=Pa>
+      あなたの手 Pa<br>
+      相手の手 Gu<br>
+      結果 You Win!
+    </p>
+  </th:block>
+
+  <p><a href="/lec02/step1">もどる</a></p>
 </body>
 
 </html>

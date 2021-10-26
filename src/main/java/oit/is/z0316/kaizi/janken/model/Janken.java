@@ -6,6 +6,15 @@ package oit.is.z0316.kaizi.janken.model;
  */
 public class Janken {
   String name;
+  int id;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public String getName() {
     return name;
