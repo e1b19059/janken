@@ -11,11 +11,33 @@
   <h1>Lec02 GET!</h1>
   <p>エントリー</p>
 
+  <!--
   <ul>
     <li th:each="user : ${room.users}">[[${user}]]</li>
   </ul>
+  -->
 
-  Hi [[${login_user}]]<br>
+  <ul>
+    <li th:each="User : ${userList}">
+      <a th:href="@{/lec02/step3(id=${User.id})}">
+         [[${User.name}]]</a>
+    </li>
+  </ul>
+
+  <p>試合情報</p>
+  <p th:if="${matchList}">
+  <div th:each="Match:${matchList}">
+    <tr>
+      <td>id:[[${Match.id}]]</td>
+      <td>user1:[[${Match.user1}]]</td>
+      <td>user2:[[${Match.user2}]]</td>
+      <td>user1の手:[[${Match.user1Hand}]]</td>
+      <td>user2の手:[[${Match.user2Hand}]]</td>
+    </tr>
+  </div>
+  </p>
+
+  <div>Hi <span sec:authentication="name"></span></div>
   <a href="step2?hand=Gu">ぐー</a>
   <a href="step2?hand=Choki">ちょき</a>
   <a href="step2?hand=Pa">ぱー</a>
