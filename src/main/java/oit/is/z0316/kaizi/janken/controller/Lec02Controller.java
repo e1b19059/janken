@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import oit.is.z0316.kaizi.janken.model.Entry;
+//import oit.is.z0316.kaizi.janken.model.Entry;
 import oit.is.z0316.kaizi.janken.model.Janken;
 import oit.is.z0316.kaizi.janken.model.Match;
 import oit.is.z0316.kaizi.janken.model.MatchInfo;
@@ -29,8 +29,8 @@ import oit.is.z0316.kaizi.janken.model.UserMapper;
 @RequestMapping("/lec02")
 public class Lec02Controller {
 
-  @Autowired
-  private Entry room;
+  //@Autowired
+  //private Entry room;
 
   @Autowired
   UserMapper userMapper;
@@ -43,19 +43,22 @@ public class Lec02Controller {
 
   Janken janken = new Janken();
 
-  @GetMapping("step1")
+  @GetMapping
   @Transactional
-  public String lec02(ModelMap model, Principal prin) {
+  public String lec02(ModelMap model) {
     ArrayList<User> userList = userMapper.selectAllUser();
     ArrayList<Match> matchList = matchMapper.selectAllMatch();
+    ArrayList<MatchInfo> matchinfoList = matchInfoMapper.selectAllMatchInfo();
 
     model.addAttribute("userList", userList);
     model.addAttribute("matchList", matchList);
-    model.addAttribute("room", this.room);
+    model.addAttribute("matchinfoList", matchinfoList);
+    //model.addAttribute("room", this.room);
 
     return "lec02.html";
   }
 
+  /*
   @GetMapping("step2")
   @Transactional
   public String lec02(String hand, ModelMap model, Principal prin) {
@@ -69,9 +72,10 @@ public class Lec02Controller {
 
     return "lec02.html";
   }
+  */
 
   @GetMapping("match")
-  public String match(@RequestParam Integer id, ModelMap model, Principal prin) {
+  public String match(@RequestParam Integer id, ModelMap model) {
     User user = userMapper.selectById(id);
     janken.setId(id);
 
