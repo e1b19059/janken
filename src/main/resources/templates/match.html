@@ -10,18 +10,21 @@
   <a href="/logout">ログアウト</a>
 
   <h1>Match</h1>
-
-  <p>自分：<span sec:authentication="name"></span></p>
-  <div th:if="${user}">相手：[[${user.name}]]</div>
+  <h2>
+    <span sec:authentication="name"></span> V.S.
+    <span th:text="${user.name}"></span>
+  </h2>
 
   <th:block th:switch="${user.id}">
-    <p th:case=1>
-      <a href="step4?id=1&hand=Gu">ぐー</a>
-      <a href="step4?id=1&hand=Choki">ちょき</a>
-      <a href="step4?id=1&hand=Pa">ぱー</a>
-    </p>
+    <a th:href="@{wait(id=${user.id},hand=Gu)}">ぐー</a>
+    <a th:href="@{wait(id=${user.id},hand=Choki)}">ちょき</a>
+    <a th:href="@{wait(id=${user.id},hand=Pa)}">ぱー</a><br>
+    <a href="/lec02/step1">もどる</a>
   </th:block>
 
+  
+
+  <!--
   <th:block th:switch="${hand}">
     <p th:case=Gu>
       あなたの手 Gu<br>
@@ -39,8 +42,7 @@
       結果 You Win!
     </p>
   </th:block>
-
-  <p><a href="/lec02/step1">もどる</a></p>
+  -->
 </body>
 
 </html>

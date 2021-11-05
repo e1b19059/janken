@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="UTF-8">
+  <title>じゃんけんアプリ</title>
+</head>
+
+<body>
+  <h1>相手の手を待っています</h1>
+  <div>Hi <span sec:authentication="name"></span></div>
+</body>
+
+</html>

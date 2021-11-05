@@ -19,7 +19,7 @@
 
   <ul>
     <li th:each="User : ${userList}">
-      <a th:href="@{/lec02/step3(id=${User.id})}">
+      <a th:href="@{/lec02/match(id=${User.id})}">
          [[${User.name}]]</a>
     </li>
   </ul>
