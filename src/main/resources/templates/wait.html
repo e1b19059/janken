@@ -9,6 +9,21 @@
 <body>
   <h1>相手の手を待っています</h1>
   <div>Hi <span sec:authentication="name"></span></div>
+
+  <th:block th:if="${match}">
+    <h2>結果</h2>
+    <p th:if="${match}">
+      <tr>
+        <td>Match: id[[${match.id}]]</td>
+        <td>user1:[[${match.user1}]]</td>
+        <td>user2:[[${match.user2}]]</td>
+        <td>user1Hand:[[${match.user1Hand}]]</td>
+        <td>user2Hand:[[${match.user2Hand}]]</td>
+      </tr>
+    </p>
+    <a href="/lec02">もどる</a>
+  </th:block>
+
 </body>
 
 </html>

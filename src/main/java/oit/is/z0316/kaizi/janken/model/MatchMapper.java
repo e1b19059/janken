@@ -10,8 +10,14 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface MatchMapper {
 
-  //@Select("SELECT id,name from matches where id = #{id}")
-  //User selectById(int id);
+  @Select("SELECT id,name from matches where id = #{id}")
+  User selectById(int id);
+
+  @Select("SELECT * from matches where id = #{id}")
+  Match selectMatchById(int id);
+
+  @Select("SELECT * from matches where id = #{id} and isActive = true;")
+  Match selectMatchByIdTrue(int id);
 
   @Select("select * from matches;")
   ArrayList<Match> selectAllMatch();
@@ -20,8 +26,4 @@ public interface MatchMapper {
   @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
   void insertMatch(Match match);
 
-
-  @Insert("INSERT INTO matches (user1,user2,user1Hand,user2Hand,isActive) VALUES (123,456,'Gu','Gu','FALSE');")
-  @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
-  void insertTmpMatch();
 }
