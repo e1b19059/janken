@@ -9,22 +9,31 @@
 <body>
   <a href="/logout">ログアウト</a>
   <h1>Lec02 GET!</h1>
-  <p>エントリー</p>
+  <div>Hi <span sec:authentication="name"></span></div>
 
-  <!--
-  <ul>
-    <li th:each="user : ${room.users}">[[${user}]]</li>
-  </ul>
-  -->
-
+  <h2>エントリー</h2>
   <ul>
     <li th:each="User : ${userList}">
-      <a th:href="@{/lec02/step3(id=${User.id})}">
+      <a th:href="@{/lec02/match(id=${User.id})}">
          [[${User.name}]]</a>
     </li>
   </ul>
 
-  <p>試合情報</p>
+  <h2>アクティブな試合</h2>
+  <p th:if="${matchinfoList}">
+  <div th:each="MatchInfo:${matchinfoList}">
+    <div th:if="${MatchInfo.isActive == true}">
+      <tr>
+        <td>id:[[${MatchInfo.id}]]</td>
+        <td>user1:[[${MatchInfo.user1}]]</td>
+        <td>user2:[[${MatchInfo.user2}]]</td>
+        <td>isActive:[[${MatchInfo.isActive}]]</td>
+      </tr>
+    </div>
+  </div>
+  </p>
+
+  <h2>試合結果</h2>
   <p th:if="${matchList}">
   <div th:each="Match:${matchList}">
     <tr>
@@ -37,11 +46,10 @@
   </div>
   </p>
 
-  <div>Hi <span sec:authentication="name"></span></div>
+  <!--
   <a href="step2?hand=Gu">ぐー</a>
   <a href="step2?hand=Choki">ちょき</a>
   <a href="step2?hand=Pa">ぱー</a>
-
   <th:block th:switch="${hand}">
     <p th:case=Gu>
       あなたの手 Gu<br>
@@ -59,6 +67,7 @@
       結果 You Win!
     </p>
   </th:block>
+  -->
 </body>
 
 </html>
